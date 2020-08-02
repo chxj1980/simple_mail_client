@@ -15,7 +15,7 @@
 #include "sendmail.h"
 
 #define ARRSZ(arr) (sizeof(arr))/sizeof(arr[0])
-#define STATE_QUIT 8
+#define STATE_QUIT 7
 
 typedef struct {
     int (*on_read)(mail_info_t *mail_info, char *buf, size_t size);
@@ -266,6 +266,27 @@ static int msg_on_read(mail_info_t *mail_info, char *buf, size_t size)
     return 0;
 }
 
+static int quit_on_read(mail_info_t *mail_info, char *buf, size_t size)
+{
+    if (strncmp(buf, "221 Bye\r\n", size)) {
+        LOGE("quit error");
+        return -1;
+    }
+    return 0;
+}
+
+static int quit_on_write(mail_info_t *mail_info, char *buf, size_t *size)
+{
+    int ret ;
+
+    ret = snprintf(buf, *size, "QUIT\r\n");
+    if (ret > *size) {
+        LOGE("buf overflow");
+        return -1;
+    }
+    return 0;
+}
+
 static cmd_t smtp_cmds[] =
 {
     {NULL, start_on_write},
@@ -275,6 +296,7 @@ static cmd_t smtp_cmds[] =
     {rcpt_to_on_read, rcpt_to_on_write},
     {data_on_read, data_on_write},
     {msg_on_read, msg_on_write},
+    {quit_on_read, quit_on_write},
 };
 
 int sendmail(mail_info_t *mail_info)
@@ -346,6 +368,8 @@ int sendmail(mail_info_t *mail_info)
             return -1;
         }
     }
+
+    LOGI("send mail success");
 
     return 0;
 }
