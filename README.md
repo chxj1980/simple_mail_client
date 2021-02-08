@@ -17,6 +17,23 @@
 # sample
 [示例代码](./src/sample.c)
 
+# 运行
+- 设置环境变量
+```
+export SMTP_SERVER=smtp服务器地址
+export SMTP_PORT=stmp服务器端口
+export SMTP_USER=你的用户名
+export SMPT_PASSWD=你的密码
+export SMTP_FROM=发送者的邮箱地址
+export SMTP_TO=接收者的邮箱地址
+export SMTP_SUBJET=邮件标题
+export SMTP_MESSAGE=邮件正文
+```
+- 运行
+```
+./app
+```
+
 # author
 - treeswayinwind@gmail.com
 - 企鹅: 279191230
