@@ -1,4 +1,4 @@
-# sendmail
+# simple_mail_client
 简单精巧邮件发送客户端
 
 # feature
