@@ -14,6 +14,9 @@
 - cmake ..
 - make -j10
 
+# sample
+[示例代码](./src/sample.c)
+
 # author
 - treeswayinwind@gmail.com
 - 企鹅: 279191230
