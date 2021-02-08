@@ -9,6 +9,11 @@
 - [x] 支持网易163服务器
 - [x] 实现smtp
 
+# 编译
+- mkdir build
+- cmake ..
+- make -j10
+
 # author
 - treeswayinwind@gmail.com
 - 企鹅: 279191230
