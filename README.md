@@ -8,3 +8,7 @@
 - [x] 不到500行代码
 - [x] 支持网易163服务器
 - [x] 实现smtp
+
+# author
+- treeswayinwind@gmail.com
+- 企鹅: 279191230
